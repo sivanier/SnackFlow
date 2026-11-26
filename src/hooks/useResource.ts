@@ -12,7 +12,7 @@ export function useResource<T>(loader: () => Promise<T>) {
     try {
       setData(await loader())
     } catch (cause) {
-      setError(dataErrorMessage(cause))
+      setError(dataErrorMessage(cause) ?? "Something went wrong")
     } finally {
       setIsLoading(false)
     }

@@ -100,7 +100,7 @@ export function ProductionPage() {
       setCreateOpen(false); setCreateForm(blankCreate); setSuccess('Production draft created from the active BOM.')
       await resource.reload()
       setSelectedId(runId)
-    } catch (cause) { setFormError(dataErrorMessage(cause)) }
+    } catch (cause) { setFormError(dataErrorMessage(cause) ?? "Something went wrong") }
     finally { setSaving(false) }
   }
 
@@ -132,7 +132,7 @@ export function ProductionPage() {
       setSuccess('Production run completed. Material issues and good output were posted to the stock ledger.')
       await resource.reload()
       setSelectedId(selectedRun.id)
-    } catch (cause) { setFormError(dataErrorMessage(cause)) }
+    } catch (cause) { setFormError(dataErrorMessage(cause) ?? "Something went wrong") }
     finally { setSaving(false) }
   }
 

@@ -87,7 +87,7 @@ export function OrdersPage() {
       const { data: orderId, error } = await requireSupabase().rpc('create_sales_order', { p_customer_id: customerId, p_lines: p_lines as unknown as Json, p_notes: notes.trim() || null })
       if (error) throw error
       setCreateOpen(false); setSuccess('Order submitted. An admin can verify stock and approve it.'); await refresh(orderId)
-    } catch (cause) { setFormError(dataErrorMessage(cause)) }
+    } catch (cause) { setFormError(dataErrorMessage(cause) ?? "Something went wrong") }
     finally { setSaving(false) }
   }
 
@@ -102,7 +102,7 @@ export function OrdersPage() {
       if (result.error) throw result.error
       const message = action === 'approve_sales_order' ? 'Order approved after stock validation.' : action === 'issue_sales_invoice' ? 'GST invoice issued and linked to this order.' : 'Order dispatched and finished stock deducted through the ledger.'
       setSuccess(message); await refresh(selectedOrder.id)
-    } catch (cause) { setFormError(dataErrorMessage(cause)) }
+    } catch (cause) { setFormError(dataErrorMessage(cause) ?? "Something went wrong") }
     finally { setSaving(false) }
   }
 

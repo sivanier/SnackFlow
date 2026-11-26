@@ -86,7 +86,7 @@ export function InventoryPage() {
       const { error } = await requireSupabase().from('inventory_movements').insert(payload)
       if (error) throw error
       setDialogOpen(false); await resource.reload()
-    } catch (cause) { setFormError(dataErrorMessage(cause)) }
+    } catch (cause) { setFormError(dataErrorMessage(cause) ?? "Something went wrong") }
     finally { setSaving(false) }
   }
 
