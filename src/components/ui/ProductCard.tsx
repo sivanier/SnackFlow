@@ -1,0 +1,6 @@
+import { ArrowUpRight } from 'lucide-react'
+import { StatusBadge } from './StatusBadge'
+export type ProductDemo = { name: string; category: string; price: string; stock: string; image: string; status: 'Completed' | 'Low stock' }
+export function ProductCard({ product }: { product: ProductDemo }) {
+  return <article className="group overflow-hidden rounded-xl border border-[#e9eeeb] bg-white transition hover:-translate-y-0.5 hover:shadow-md"><div className="relative h-28 overflow-hidden bg-[#f4f2ed] sm:h-32"><img src={product.image} alt={product.name} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105"/><span className="absolute right-2 top-2"><StatusBadge status={product.status}/></span></div><div className="p-3"><div className="flex items-start justify-between gap-2"><div><h3 className="text-[10px] font-semibold text-[#34483f]">{product.name}</h3><p className="mt-0.5 text-[9px] text-[#98a39d]">{product.category}</p></div><ArrowUpRight size={13} className="text-[#a0aca5]"/></div><div className="mt-3 flex items-center justify-between border-t border-[#f0f3f1] pt-2.5"><span className="text-[10px] font-semibold text-[#30473d]">{product.price}</span><span className="text-[9px] text-[#89978f]">{product.stock} demo</span></div></div></article>
+}
