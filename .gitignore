@@ -8,3 +8,5 @@ dist/
 .supabase-home/
 supabase/.temp/
 supabase/.branches/
+
+supabase/snippets/
